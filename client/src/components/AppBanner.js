@@ -101,12 +101,12 @@ export default function AppBanner() {
             <AppBar position="static">
                 <Toolbar>
                     <Typography                        
-                        variant="h4"
+                        variant="h3"
                         noWrap
                         component="div"
                         sx={{ display: { xs: 'none', sm: 'block' } }}                        
                     >
-                        <Link style={{ textDecoration: 'none', color: 'white' }} to='/' onClick={handleCloseList}>⌂</Link>
+                        <Link className='logo' to='/' onClick={handleCloseList}>Playlister</Link>
                     </Typography>
                     <Box sx={{ flexGrow: 1 }}>{editToolbar}</Box>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>

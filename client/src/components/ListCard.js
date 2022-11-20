@@ -6,7 +6,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import TextField from '@mui/material/TextField';
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
+import SongCard from './SongCard.js'
+import EditToolbar from './EditToolbar'
 /*
     This is a card in our list of playlists. It lets select
     a list for editing and it has controls for changing its 
@@ -18,21 +21,7 @@ function ListCard(props) {
     const { store } = useContext(GlobalStoreContext);
     const [editActive, setEditActive] = useState(false);
     const [text, setText] = useState("");
-    const { idNamePair, selected } = props;
-
-    function handleLoadList(event, id) {
-        console.log("handleLoadList for " + id);
-        if (!event.target.disabled) {
-            let _id = event.target.id;
-            if (_id.indexOf('list-card-text-') >= 0)
-                _id = ("" + _id).substring("list-card-text-".length);
-
-            console.log("load " + event.target.id);
-
-            // CHANGE THE CURRENT LIST
-            store.setCurrentList(id);
-        }
-    }
+    const { idNamePair, changeCallback, expanded } = props;
 
     function handleToggleEdit(event) {
         event.stopPropagation();
@@ -65,24 +54,16 @@ function ListCard(props) {
         setText(event.target.value);
     }
 
-    let selectClass = "unselected-list-card";
-    if (selected) {
-        selectClass = "selected-list-card";
-    }
     let cardStatus = false;
     if (store.isListNameEditActive) {
         cardStatus = true;
     }
     let cardElement =
-        <ListItem
+        <Box
             id={idNamePair._id}
             key={idNamePair._id}
-            sx={{ marginTop: '15px', display: 'flex', p: 1 }}
-            style={{ width: '100%', fontSize: '48pt' }}
-            button
-            onClick={(event) => {
-                handleLoadList(event, idNamePair._id)
-            }}
+            sx={{ marginTop: '15px', display: 'flex', p: 1}}
+            style={{ width: '100%', fontSize: '48pt'}}
         >
             <Box sx={{ p: 1, flexGrow: 1, overflowX: 'auto' }}>{idNamePair.name}</Box>
             <Box sx={{ p: 1 }}>
@@ -97,8 +78,7 @@ function ListCard(props) {
                     <DeleteIcon style={{fontSize:'48pt'}} />
                 </IconButton>
             </Box>
-        </ListItem>
-
+        </Box>
     if (editActive) {
         cardElement =
             <TextField
@@ -119,7 +99,31 @@ function ListCard(props) {
             />
     }
     return (
-        cardElement
+        <Accordion expanded={expanded === idNamePair._id} onChange={changeCallback(idNamePair._id)} key={idNamePair._id}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon/>}>
+                {cardElement}
+            </AccordionSummary>
+            <AccordionDetails>
+                {
+                    store.currentList 
+                    ? 
+                    store.currentList.songs.map((song, index) => (
+                        <SongCard
+                            id={'playlist-song-' + (index)}
+                            key={'playlist-song-' + (index)}
+                            index={index}
+                            song={song}
+                        />
+                    )) 
+                    :
+                    ""
+                    
+                } 
+                <EditToolbar/>
+            </AccordionDetails>
+        </Accordion>
+        
+        
     );
 }
 

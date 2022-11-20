@@ -35,6 +35,9 @@ export default function RegisterScreen() {
     }
 
     return (
+        <div id="register-screen">
+
+        
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
                 <Box
@@ -127,5 +130,6 @@ export default function RegisterScreen() {
                 </Box>
                 <Copyright sx={{ mt: 5 }} />
             </Container>
+        </div>
     );
 }

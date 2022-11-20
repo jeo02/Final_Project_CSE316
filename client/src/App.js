@@ -11,6 +11,7 @@ import {
     Statusbar,
     WorkspaceScreen
 } from './components'
+import { Grid } from '@mui/material';
 /*
     This is our application's top-level component.
     
@@ -26,7 +27,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <AuthContextProvider>
-                <GlobalStoreContextProvider>              
+                <GlobalStoreContextProvider>            
                     <AppBanner />
                     <Switch>
                         <Route path="/" exact component={HomeWrapper} />

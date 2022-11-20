@@ -17,7 +17,10 @@
 }
 
 body {
-  background-color: var(--swatch-foundation);
+  background-color: #032276;
+  background-image: url('../public/retro.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #root {
@@ -28,6 +31,9 @@ body {
   left: 10%;
   height: 90%;
   top: 5%;
+  display: grid;
+  grid-template-rows: 7% 85% 8%;
+  background-image: linear-gradient(45deg, #8A2BB6, #092174);
 }
 
 #app-root {
@@ -36,6 +42,18 @@ body {
   height: 100%;
   top: 0%;
   left: 0%;
+}
+
+.logo{
+  font-family: "Satisfy" !important;
+  color: red;
+  text-decoration: none;
+}
+
+#register{
+  background-color: whitesmoke;
+  grid-row-start: 2;
+  grid-row-end: 4;
 }
 
 #playlister-banner {
@@ -54,17 +72,15 @@ body {
   border-radius: 10px;
 }
 #splash-screen {
-  background-image: linear-gradient(to bottom, #08b8a1, #234367);
   color: white;
   font-size: 5vw;
   border-color: #123456;
-  border-radius: 15px;
   padding-top: 5%;
   padding-bottom: 5%;
-  height:70%;
   font-weight: bold;
   text-align: center;
   vertical-align: center;
+
 }
 
 #edit-toolbar {
@@ -118,11 +134,6 @@ body {
 }
 
 #playlister-statusbar {
-  position: fixed;
-  left: 10%;
-  top: 85%;
-  width: 80%;
-  height: 10%;
   background-color: rgb(44, 124, 228);
   color:whitesmoke;
   display: flex;
@@ -132,8 +143,6 @@ body {
   font-weight: bold;
   font-stretch: 50%;
   overflow-x: auto;
-  border-radius: 10px;
-  
 }
 
 .statusbar {
@@ -165,12 +174,6 @@ body {
 }
 
 #list-selector-list {
-  max-height: 83%;
-  position: absolute;
-  left: 0%;
-  top: 10%;
-  width: 100%;
-  height: 90%;
   display: flex;
   flex-direction: column;
   overflow: scroll;
