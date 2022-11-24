@@ -83,6 +83,12 @@ body {
 
 }
 
+.modal-title{
+  background-color: #1976d2;
+  color: white;
+  padding:10px;
+}
+
 #edit-toolbar {
   background-color: transparent;
   float: right;
@@ -298,7 +304,6 @@ input {
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  background: var(--black);
   color: var(--swatch-text);
   cursor: pointer;
   visibility: hidden;
@@ -371,7 +376,7 @@ input {
 }
 
 .modal-button {
-  margin: 5px;
+  margin: 5px !important;
 }
 
 #close-modal-button {

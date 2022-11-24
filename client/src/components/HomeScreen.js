@@ -11,6 +11,7 @@ import { Accordion, AccordionDetails, AccordionSummary, Grid, Tab, Tabs } from '
 import { Box, Container } from '@mui/system';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import EditToolbar from './EditToolbar'
+import MUIEditSongModal from './MUIEditSongModal'
 
 /*
     This React component lists all the top5 lists in the UI.
@@ -21,13 +22,15 @@ const HomeScreen = () => {
     const { store } = useContext(GlobalStoreContext);
 
     const [tabIndex, setTabIndex] = useState(0);
-    const [expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = useState(false);
 
 
-    const handleAccordianChange = (id) => (event, isExpanded) => {
+    const handleAccordianChange = (id, isExpanded) => {
+        console.log(isExpanded, id)
         if(store.currentList || !isExpanded){
             store.closeCurrentList();
         }
+        console.log("back to home")
         setExpanded(isExpanded ? id : false);
         store.setCurrentList(id);
     };

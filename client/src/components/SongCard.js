@@ -1,5 +1,9 @@
+import { ListItem, Typography } from '@mui/material';
 import React, { useContext, useState } from 'react'
 import { GlobalStoreContext } from '../store'
+import Box from '@mui/material/Box';
+import ClearIcon from '@mui/icons-material/Clear';
+import IconButton from '@mui/material/IconButton';
 
 function SongCard(props) {
     const { store } = useContext(GlobalStoreContext);
@@ -42,10 +46,38 @@ function SongCard(props) {
             store.showEditSongModal(index, song);
         }
     }
-
+    let removeButton = ""
+    if(!store.currentList.published){
+        removeButton = 
+            <Box sx={{ p: 1 }}>
+                <IconButton onClick={handleRemoveSong} aria-label='delete'>
+                    <ClearIcon style={{fontSize:'25pt'}} />
+                </IconButton>
+            </Box>
+    }
     let cardClass = "list-card unselected-list-card";
     return (
-        <div
+        <ListItem 
+            key={index}
+            id={'song-' + index + '-card'}
+            sx={{display: 'flex', p: 1 }}
+            style={{ width: '100%'}}
+            onDragStart={handleDragStart}
+            onDragOver={handleDragOver}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            draggable="true"
+            button
+            onClick={handleClick}>
+                <Box sx={{ p: 1, flexGrow: 1, fontSize:'25pt' }}>
+                    {index + 1}.{" "}{song.title} by {song.artist}
+                </Box>
+                {removeButton}
+        </ListItem>
+    );
+}
+/*<div
             key={index}
             id={'song-' + index + '-card'}
             className={cardClass}
@@ -71,8 +103,5 @@ function SongCard(props) {
                 value={"\u2715"}
                 onClick={handleRemoveSong}
             />
-        </div>
-    );
-}
-
+        </div>*/
 export default SongCard;
