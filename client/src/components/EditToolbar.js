@@ -13,8 +13,9 @@ import { Grid } from '@mui/material';
     
     @author McKilla Gorilla
 */
-function EditToolbar() {
+function EditToolbar(props) {
     const { store } = useContext(GlobalStoreContext);
+    const { id } = props;
 
     function handleUndo() {
         store.undo();
@@ -22,8 +23,10 @@ function EditToolbar() {
     function handleRedo() {
         store.redo();
     }
-    function handleClose() {
-        store.closeCurrentList();
+
+    async function handleDeleteList(event) {
+        event.stopPropagation()
+        store.markListForDeletion(id);
     }
 
     let editToolbar = "";
@@ -55,10 +58,9 @@ function EditToolbar() {
                         variant="contained">
                             Publish
                     </Button>
-                    <Button 
-                        //disabled={!store.canRedo()}
+                    <Button
                         id='delete-button'
-                        //onClick={handleRedo}
+                        onClick={handleDeleteList}
                         variant="contained">
                             Delete
                     </Button>

@@ -50,10 +50,8 @@ body {
   text-decoration: none;
 }
 
-#register{
+#register-screen{
   background-color: whitesmoke;
-  grid-row-start: 2;
-  grid-row-end: 4;
 }
 
 #playlister-banner {

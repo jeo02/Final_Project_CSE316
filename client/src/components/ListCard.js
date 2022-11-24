@@ -42,13 +42,6 @@ function ListCard(props) {
         setEditActive(newActive);
     }
 
-    async function handleDeleteList(event, id) {
-        event.stopPropagation();
-        let _id = event.target.id;
-        _id = ("" + _id).substring("delete-list-".length);
-        store.markListForDeletion(id);
-    }
-
     function handleKeyPress(event) {
         if (event.code === "Enter") {
             let id = event.target.id.substring("list-".length);
@@ -78,10 +71,15 @@ function ListCard(props) {
         <Box
             id={idNamePair._id}
             key={idNamePair._id}
-            sx={{display: 'flex', p: 1}}
+            sx={{display: 'flex', flexDirection:"column", p: 1}}
             style={{ width: '100%', fontSize: '30pt'}}
         >
-            <Box sx={{ p: 1, flexGrow: 1, overflowX: 'auto' }}>{idNamePair.name}</Box>
+            <Box sx={{ p: 1, flexGrow: 1, overflowX: 'auto' }}>
+                {idNamePair.name}
+            </Box>
+            <Box sx={{ p: 1, flexGrow: 1, overflowX: 'auto', fontSize: "15pt"}}>
+                {idNamePair.ownerEmail}
+            </Box>
         </Box>
 
     if (editActive) {
@@ -115,7 +113,8 @@ function ListCard(props) {
         <Accordion 
             expanded={expanded === idNamePair._id}  
             key={idNamePair._id} 
-            onClick = {handleToggleEdit}>
+            onClick = {handleToggleEdit}
+            sx={{borderRadius:"15px !important", margin:"5px 0 5px 5px !important"}}>
             
             <AccordionSummary 
                 expandIcon={
@@ -128,7 +127,7 @@ function ListCard(props) {
                 {cardElement}
             </AccordionSummary>
             <AccordionDetails>
-                <List>
+                <List sx={{maxHeight: "250px", overflow:"scroll"}}>
                     {
                         store.currentList 
                         ? 
@@ -144,15 +143,16 @@ function ListCard(props) {
                         :
                         ""
                     }
-                    <ListItem 
-                        button 
-                        sx={{display:"flex", justifyContent:"center", fontSize: "30pt"}}
-                        onClick={handleAddNewSong}>
-                        +
-                    </ListItem>
+                    
                 </List>
+                <ListItem 
+                    button 
+                    sx={{display:"flex", justifyContent:"center", fontSize: "30pt"}}
+                    onClick={handleAddNewSong}>
+                    +
+                </ListItem>
                 {modalJSX}
-                <EditToolbar/>
+                <EditToolbar id={idNamePair._id}/>
             </AccordionDetails>
         </Accordion>
     );
