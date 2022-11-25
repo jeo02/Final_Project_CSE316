@@ -24,6 +24,10 @@ function EditToolbar(props) {
         store.redo();
     }
 
+    function handlePublish(){
+        store.publish();
+    }
+
     async function handleDeleteList(event) {
         event.stopPropagation()
         store.markListForDeletion(id);
@@ -54,7 +58,7 @@ function EditToolbar(props) {
                     <Button 
                         //disabled={!store.canRedo()}
                         id='publish-button'
-                        //onClick={handleRedo}
+                        onClick={handlePublish}
                         variant="contained">
                             Publish
                     </Button>

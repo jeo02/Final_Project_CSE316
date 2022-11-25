@@ -26,13 +26,13 @@ const HomeScreen = () => {
 
 
     const handleAccordianChange = (id, isExpanded) => {
-        console.log(isExpanded, id)
-        if(store.currentList || !isExpanded){
+        if(!isExpanded){
             store.closeCurrentList();
         }
-        console.log("back to home")
+        else{
+            store.setCurrentList(id);
+        }
         setExpanded(isExpanded ? id : false);
-        store.setCurrentList(id);
     };
 
     

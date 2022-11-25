@@ -36,9 +36,7 @@ function ListCard(props) {
 
     function toggleEdit() {
         let newActive = !editActive;
-        if (newActive) {
-            store.setIsListNameEditActive();
-        }
+        store.setIsListNameEditActive();
         setEditActive(newActive);
     }
 
@@ -77,8 +75,8 @@ function ListCard(props) {
             <Box sx={{ p: 1, flexGrow: 1, overflowX: 'auto' }}>
                 {idNamePair.name}
             </Box>
-            <Box sx={{ p: 1, flexGrow: 1, overflowX: 'auto', fontSize: "15pt"}}>
-                {idNamePair.ownerEmail}
+            <Box sx={{ p: 1, flexGrow: 1, overflowX: 'auto', fontSize: "13pt"}}>
+                {"By: " + idNamePair.userName}
             </Box>
         </Box>
 
@@ -116,13 +114,14 @@ function ListCard(props) {
             onClick = {handleToggleEdit}
             sx={{borderRadius:"15px !important", margin:"5px 0 5px 5px !important"}}>
             
-            <AccordionSummary 
+            <AccordionSummary
                 expandIcon={
                     <IconButton
                         onClick = {(event) => {handleChangeCallback(event, idNamePair._id)}}>
                         <ExpandMoreIcon/>
                     </IconButton>
-                }
+                }  
+                sx={{backgroundColor: "white !important", borderRadius:"15px !important"}}  
             >
                 {cardElement}
             </AccordionSummary>
