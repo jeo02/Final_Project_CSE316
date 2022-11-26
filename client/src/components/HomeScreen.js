@@ -2,16 +2,12 @@ import React, { useContext, useEffect, useState } from 'react'
 import { GlobalStoreContext } from '../store'
 import ListCard from './ListCard.js'
 import MUIDeleteModal from './MUIDeleteModal'
-import SongCard from './SongCard.js'
 import AddIcon from '@mui/icons-material/Add';
 import Fab from '@mui/material/Fab'
-import List from '@mui/material/List';
 import Typography from '@mui/material/Typography'
-import { Accordion, AccordionDetails, AccordionSummary, Grid, Tab, Tabs } from '@mui/material';
-import { Box, Container } from '@mui/system';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import EditToolbar from './EditToolbar'
-import MUIEditSongModal from './MUIEditSongModal'
+import { Tab, Tabs } from '@mui/material';
+import { Box } from '@mui/system';
+import HomeBanner from './HomeBanner'
 
 /*
     This React component lists all the top5 lists in the UI.
@@ -67,20 +63,12 @@ const HomeScreen = () => {
     let style = {
         display: "grid",
         gridTemplateColumns: "60% 40%",
-        gridTemplateRows: "10% 90%"
+        gridTemplateRows: "13% 87%"
     }
     return (
         <Box sx = {style}>
-            <Box sx={{gridRowEnd:"2", display:"flex", alignItems:"center"}}>
-                    <Fab 
-                        color="primary" 
-                        aria-label="add"
-                        id="add-list-button"
-                        onClick={handleCreateNewList}
-                    >
-                        <AddIcon />
-                    </Fab>
-                        <Typography variant="h2">Your Lists</Typography>
+            <Box sx={{display: "flex", alignItems: "center", gridColumnStart:"1", gridColumnEnd:"3", paddingTop: "15px"}}>
+                <HomeBanner/>
             </Box>
 
             <Box sx={{gridRowStart:"2", overflow:"scroll"}}>
@@ -101,42 +89,5 @@ const HomeScreen = () => {
         
     )
 }
-/*<div>
 
-        
-        <Grid container>
-            <Grid item xs={12} container sx={{height:"inherit"}}>
-                <Container>
-                    <Fab 
-                        color="primary" 
-                        aria-label="add"
-                        id="add-list-button"
-                        onClick={handleCreateNewList}
-                    >
-                        <AddIcon />
-                    </Fab>
-                        <Typography variant="h2">Your Lists</Typography>
-                </Container>
-                    
-            
-            </Grid>
-
-            <Grid item xs={8} sx={{height:"inherit", overflow:"scroll"}}>
-                {listCard}
-                
-            </Grid>
-
-            <Grid item xs={4} container>
-
-            </Grid>
-        </Grid></div>
-/*<div id="playlist-selector">
-            
-            <div id="list-selector-list">
-                {
-                    listCard
-                }
-                <MUIDeleteModal />
-            </div>
-        </div>*/
 export default HomeScreen;

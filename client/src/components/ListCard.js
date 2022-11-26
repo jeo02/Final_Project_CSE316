@@ -65,6 +65,7 @@ function ListCard(props) {
     if (store.isListNameEditActive) {
         cardStatus = true;
     }
+
     let cardElement =
         <Box
             id={idNamePair._id}
@@ -107,12 +108,17 @@ function ListCard(props) {
         modalJSX = <MUIRemoveSongModal />;
     }
 
+    let cardStyles = {borderRadius:"15px !important", margin:"5px 0 5px 5px !important"}
+    if(idNamePair.published){
+        cardStyles = {borderRadius:"15px !important", margin:"5px 0 5px 5px !important", backgroundColor: "#b9d2ee"}
+    }
+
     return (
         <Accordion 
             expanded={expanded === idNamePair._id}  
             key={idNamePair._id} 
             onClick = {handleToggleEdit}
-            sx={{borderRadius:"15px !important", margin:"5px 0 5px 5px !important"}}>
+            sx={cardStyles}>
             
             <AccordionSummary
                 expandIcon={
@@ -121,7 +127,7 @@ function ListCard(props) {
                         <ExpandMoreIcon/>
                     </IconButton>
                 }  
-                sx={{backgroundColor: "white !important", borderRadius:"15px !important"}}  
+                sx={{backgroundColor: "inherit !important", borderRadius:"15px !important"}}  
             >
                 {cardElement}
             </AccordionSummary>
