@@ -2,11 +2,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { GlobalStoreContext } from '../store'
 import ListCard from './ListCard.js'
 import MUIDeleteModal from './MUIDeleteModal'
-import Fab from '@mui/material/Fab'
-import Typography from '@mui/material/Typography'
 import { Tab, Tabs } from '@mui/material';
 import { Box } from '@mui/system';
 import HomeBanner from './HomeBanner'
+import Player from './Player'
 
 /*
     This React component lists all the top5 lists in the UI.
@@ -79,6 +78,22 @@ const HomeScreen = () => {
                         <Tab label="Player" sx={{color:'white'}}/>
                         <Tab label="Comments" sx={{color:'white'}}/>
                     </Tabs>
+                </Box>
+                <Box>
+                    {
+                        tabIndex === 0
+                        ?
+                        <Player/>
+                        :
+                        ""
+                    }
+                    {
+                        tabIndex === 1
+                        ?
+                        <p>poop</p>
+                        :
+                        ""
+                    }
                 </Box>
             </Box>
 
