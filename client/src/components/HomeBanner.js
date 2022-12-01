@@ -37,8 +37,7 @@ function HomeBanner(props) {
             primary:{
                 main: "#2C7CE4"
             }
-        },
-
+        }
     });
 
     return(
@@ -68,7 +67,7 @@ function HomeBanner(props) {
                         <PersonIcon sx={{fontSize: "50px"}}/>
                 </IconButton>
             </Grid>
-            <Grid item xs= {6}>
+            <Grid item xs sx={{margin: "0 10px 0 10px"}}>
                 <ThemeProvider theme={myTheme}>
                     <TextField
                         id = "home-search-bar"
@@ -105,8 +104,11 @@ function HomeBanner(props) {
                     open={isMenuOpen}
                     onClose={handleMenuClose}
                 >
-                    <MenuItem onClick={handleMenuClose}>Login</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Create New Account</MenuItem>
+                    <MenuItem onClick={handleMenuClose}>Name (A - Z)</MenuItem>
+                    <MenuItem onClick={handleMenuClose}>Published Date (Newest)</MenuItem>
+                    <MenuItem onClick={handleMenuClose}>Listens (High - Low)</MenuItem>
+                    <MenuItem onClick={handleMenuClose}>Likes (High - Low)</MenuItem>
+                    <MenuItem onClick={handleMenuClose}>Dislikes (High - Low)</MenuItem>
                 </Menu>
             </Grid>
         </Grid>

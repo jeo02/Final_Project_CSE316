@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react'
 import { GlobalStoreContext } from '../store'
 import ListCard from './ListCard.js'
 import MUIDeleteModal from './MUIDeleteModal'
-import AddIcon from '@mui/icons-material/Add';
 import Fab from '@mui/material/Fab'
 import Typography from '@mui/material/Typography'
 import { Tab, Tabs } from '@mui/material';
@@ -40,10 +39,8 @@ const HomeScreen = () => {
         store.loadIdNamePairs();
     }, []);
 
-    function handleCreateNewList() {
-        store.createNewList();
-    }
     let listCard = "";
+
     if (store) {
         listCard = 
             <Box sx={{ width: '100%', bgcolor: 'background.paper'}}>
@@ -68,7 +65,7 @@ const HomeScreen = () => {
     return (
         <Box sx = {style}>
             <Box sx={{display: "flex", alignItems: "center", gridColumnStart:"1", gridColumnEnd:"3", paddingTop: "15px"}}>
-                <HomeBanner/>
+                <HomeBanner />
             </Box>
 
             <Box sx={{gridRowStart:"2", overflow:"scroll"}}>

@@ -11,7 +11,6 @@ import RegisterScreen from './RegisterScreen'
 import SongCard from './SongCard'
 import SplashScreen from './SplashScreen'
 import Statusbar from './Statusbar'
-import WorkspaceScreen from './WorkspaceScreen'
 import HomeBanner from './HomeBanner'
 /*
     This serves as a module so that we can import
@@ -33,5 +32,4 @@ export {
     RegisterScreen,
     SplashScreen,
     Statusbar, 
-    WorkspaceScreen,
     HomeBanner }

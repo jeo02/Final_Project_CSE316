@@ -138,7 +138,12 @@ getPlaylistPairs = async (req, res) => {
                             _id: list._id,
                             name: list.name,
                             userName: list.userName,
-                            published: list.published
+                            published: list.published,
+                            likes: list.likes,
+                            dislikes: list.dislikes,
+                            comments: list.comments,
+                            views: list.views,
+                            publishedOn: list.publishedOn
                         };
                         pairs.push(pair);
                     }
@@ -200,6 +205,8 @@ updatePlaylist = async (req, res) => {
                     list.likes = body.playlist.likes;
                     list.dislikes = body.playlist.dislikes;
                     list.views = body.playlist.views;
+                    if(body.playlist.publishedOn)
+                        list.publishedOn = body.playlist.publishedOn;
                     list
                         .save()
                         .then(() => {
@@ -219,8 +226,27 @@ updatePlaylist = async (req, res) => {
                         })
                 }
                 else {
-                    console.log("incorrect user!");
-                    return res.status(400).json({ success: false, description: "authentication error" });
+                    //If not then we can only update likes/dislikes/comments
+                    list.comments = body.playlist.comments;
+                    list.likes = body.playlist.likes;
+                    list.dislikes = body.playlist.dislikes;
+                    list
+                        .save()
+                        .then(() => {
+                            console.log("SUCCESS!!!");
+                            return res.status(200).json({
+                                success: true,
+                                id: list._id,
+                                message: 'Playlist updated!',
+                            })
+                        })
+                        .catch(error => {
+                            console.log("FAILURE: " + JSON.stringify(error));
+                            return res.status(404).json({
+                                error,
+                                message: 'Playlist not updated!',
+                            })
+                        })
                 }
             });
         }
