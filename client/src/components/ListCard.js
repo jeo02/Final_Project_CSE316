@@ -30,7 +30,7 @@ function ListCard(props) {
     const { idNamePair, changeCallback, expanded } = props;
 
     function handleToggleEdit(event) {
-        if(event.detail === 2 && !store.listNameActive && expanded === false){
+        if(event.detail === 2 && !store.listNameActive && expanded === false && !idNamePair.published){
             console.log("what is expanded", expanded)
             event.stopPropagation();
             toggleEdit();
@@ -221,6 +221,7 @@ function ListCard(props) {
                                 key={'playlist-song-' + (index)}
                                 index={index}
                                 song={song}
+                                published={idNamePair.published}
                             />
                             
                         )) 

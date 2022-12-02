@@ -79,22 +79,21 @@ const HomeScreen = () => {
                         <Tab label="Comments" sx={{color:'white'}}/>
                     </Tabs>
                 </Box>
-                <Box>
-                    {
-                        tabIndex === 0
-                        ?
-                        <Player/>
-                        :
-                        ""
-                    }
-                    {
-                        tabIndex === 1
-                        ?
-                        <p>poop</p>
-                        :
-                        ""
-                    }
-                </Box>
+                {
+                    tabIndex === 0
+                    ?
+                    <Player/>
+                    :
+                    ""
+                }
+                {
+                    tabIndex === 1
+                    ?
+                    <p>poop</p>
+                    :
+                    ""
+                }
+                
             </Box>
 
         </Box>
