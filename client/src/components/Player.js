@@ -58,6 +58,10 @@ export default function Player(){
         margin: "5px 10px 0 10px", 
         borderRadius: "15px"
     }
+
+    let buttonStyles = {
+        textAlign: "center"
+    }
     
     return (
         <Box sx={styles}>
@@ -96,26 +100,30 @@ export default function Player(){
                             <Grid item xs={10} sx={playingInfoStyles}>{store.currentList.songs[index].artist}</Grid>
                             
                             <Grid item xs={12} sx={{marginBottom: "30px"}}></Grid>
-                            <Grid item xs={2}></Grid>
-                            <Grid item xs={2}>
-                                <IconButton onClick={decSong}>
-                                    <SkipPreviousIcon fontSize='large'/>
-                                </IconButton>
-                            </Grid>
-                            <Grid item xs={2}>
-                                <IconButton onClick={pauseSong}>
-                                    <StopCircleIcon fontSize='large'/>
-                                </IconButton>    
-                            </Grid>
-                            <Grid item xs={2}>
-                                <IconButton onClick={playSong}>
-                                    <PlayArrowIcon fontSize='large'/>
-                                </IconButton>
-                            </Grid>
-                            <Grid item xs={2}>
-                                <IconButton onClick={incSong}>
-                                    <SkipNextIcon fontSize='large'/>
-                                </IconButton>
+
+                            <Grid item xs ={1}></Grid>
+                            <Grid item xs = {10} container sx={{backgroundColor: "#b9d2ee", borderRadius:"15px", borderStyle: "groove"}}>
+                                <Grid item xs={2}></Grid>
+                                <Grid item xs={2} sx={buttonStyles}>
+                                    <IconButton onClick={decSong}>
+                                        <SkipPreviousIcon fontSize='large'/>
+                                    </IconButton>
+                                </Grid>
+                                <Grid item xs={2} sx={buttonStyles}>
+                                    <IconButton onClick={pauseSong}>
+                                        <StopCircleIcon fontSize='large'/>
+                                    </IconButton>    
+                                </Grid>
+                                <Grid item xs={2} sx={buttonStyles}>
+                                    <IconButton onClick={playSong}>
+                                        <PlayArrowIcon fontSize='large'/>
+                                    </IconButton>
+                                </Grid>
+                                <Grid item xs={2} sx={buttonStyles}>
+                                    <IconButton onClick={incSong}>
+                                        <SkipNextIcon fontSize='large'/>
+                                    </IconButton>
+                                </Grid>
                             </Grid>
                         </Grid>
                         :
@@ -133,27 +141,32 @@ export default function Player(){
                             <Grid item xs={10} sx={playingInfoStyles}></Grid>
                             
                             <Grid item xs={12} sx={{marginBottom: "30px"}}></Grid>
-                            <Grid item xs={2}></Grid>
-                            <Grid item xs={2}>
-                                <IconButton>
-                                    <SkipPreviousIcon fontSize='large'/>
-                                </IconButton>
+                            
+                            <Grid item xs ={1}></Grid>
+                            <Grid item xs = {10} container sx={{backgroundColor: "#b9d2ee", borderRadius:"15px", borderStyle: "groove"}}>
+                                <Grid item xs={2}></Grid>
+                                <Grid item xs={2} sx={buttonStyles}>
+                                    <IconButton>
+                                        <SkipPreviousIcon fontSize='large'/>
+                                    </IconButton>
+                                </Grid>
+                                <Grid item xs={2} sx={buttonStyles}>
+                                    <IconButton>
+                                        <StopCircleIcon fontSize='large'/>
+                                    </IconButton>    
+                                </Grid>
+                                <Grid item xs={2} sx={buttonStyles}>
+                                    <IconButton>
+                                        <PlayArrowIcon fontSize='large'/>
+                                    </IconButton>
+                                </Grid>
+                                <Grid item xs={2} sx={buttonStyles}>
+                                    <IconButton>
+                                        <SkipNextIcon fontSize='large'/>
+                                    </IconButton>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={2}>
-                                <IconButton>
-                                    <StopCircleIcon fontSize='large'/>
-                                </IconButton>    
-                            </Grid>
-                            <Grid item xs={2}>
-                                <IconButton>
-                                    <PlayArrowIcon fontSize='large'/>
-                                </IconButton>
-                            </Grid>
-                            <Grid item xs={2}>
-                                <IconButton>
-                                    <SkipNextIcon fontSize='large'/>
-                                </IconButton>
-                            </Grid>
+                            
                         </Grid>
                     }
                 </Grid>
