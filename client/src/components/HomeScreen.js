@@ -6,6 +6,7 @@ import { Tab, Tabs } from '@mui/material';
 import { Box } from '@mui/system';
 import HomeBanner from './HomeBanner'
 import Player from './Player'
+import Comments from './Comments';
 
 /*
     This React component lists all the top5 lists in the UI.
@@ -92,7 +93,7 @@ const HomeScreen = () => {
                 {
                     tabIndex === 1
                     ?
-                    <p>poop</p>
+                    <Comments/>
                     :
                     ""
                 }

@@ -14,6 +14,7 @@ import Statusbar from './Statusbar'
 import HomeBanner from './HomeBanner'
 import Player from './Player'
 import YouTubePlayer from './YouTubePlayer'
+import Comments from './Comments'
 
 /*
     This serves as a module so that we can import
@@ -37,4 +38,5 @@ export {
     Statusbar, 
     HomeBanner,
     Player,
-    YouTubePlayer }
+    YouTubePlayer,
+    Comments }

@@ -1,12 +1,9 @@
 import { useContext, useState } from 'react';
 import { GlobalStoreContext } from '../store';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import { YouTubePlayer } from '.';
 import { Box } from '@mui/system';
-import { Grid, Icon, IconButton, Typography } from '@mui/material';
+import { Grid, IconButton, Typography } from '@mui/material';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
@@ -53,7 +50,8 @@ export default function Player(){
     }
     let styles = {
         backgroundColor: "white", 
-        height: "90%", display:"grid", 
+        height: "90%", 
+        display:"grid", 
         gridTemplateRows:"50% 50%", 
         margin: "5px 10px 0 10px", 
         borderRadius: "15px"

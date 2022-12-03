@@ -514,6 +514,14 @@ function GlobalStoreContextProvider(props) {
         // NOW MAKE IT OFFICIAL
         store.updateCurrentList();
     }
+
+    store.updateComments = function(comment){
+        let list = store.currentList;
+        let comments = list.comments;
+        comments.push(comment);
+
+        store.updateCurrentList();
+    }
     store.addNewSong = () => {
         let playlistSize = store.getPlaylistSize();
         store.addCreateSongTransaction(

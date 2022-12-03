@@ -79,6 +79,7 @@ function HomeBanner(props) {
             else{
                 store.listScreenUsers(search);
             }
+            setSearch("")
         }
     }
 
@@ -132,6 +133,7 @@ function HomeBanner(props) {
                     <TextField
                         id = "home-search-bar"
                         onChange={handleSearchUpdate} 
+                        value={search}
                         onKeyDown={handleKeyPress}
                         label="Search"
                         fullWidth>
