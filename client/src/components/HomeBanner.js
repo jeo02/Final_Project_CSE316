@@ -43,6 +43,31 @@ function HomeBanner(props) {
         store.listScreenUsers("");
     }
 
+    function handleSortName(){
+        handleMenuClose();
+        store.sortByName();
+    }
+
+    function handleSortPublish(){
+        handleMenuClose();
+        store.sortByPublishedDate();
+    }
+
+    function handleSortListens(){
+        handleMenuClose();
+        store.sortByListens();
+    }
+
+    function handleSortDislikes(){
+        handleMenuClose();
+        store.sortByDislikes();
+    }
+
+    function handleSortLikes(){
+        handleMenuClose();
+        store.sortByLikes();
+    }
+
     function handleKeyPress(event) {
         if (event.code === "Enter") {
             if(store.currentListScreen === "HOME"){
@@ -140,11 +165,11 @@ function HomeBanner(props) {
                     open={isMenuOpen}
                     onClose={handleMenuClose}
                 >
-                    <MenuItem onClick={handleMenuClose}>Name (A - Z)</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Published Date (Newest)</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Listens (High - Low)</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Likes (High - Low)</MenuItem>
-                    <MenuItem onClick={handleMenuClose}>Dislikes (High - Low)</MenuItem>
+                    <MenuItem onClick={handleSortName}>Name (A - Z)</MenuItem>
+                    <MenuItem onClick={handleSortPublish}>Published Date (Newest)</MenuItem>
+                    <MenuItem onClick={handleSortListens}>Listens (High - Low)</MenuItem>
+                    <MenuItem onClick={handleSortLikes}>Likes (High - Low)</MenuItem>
+                    <MenuItem onClick={handleSortDislikes}>Dislikes (High - Low)</MenuItem>
                 </Menu>
             </Grid>
         </Grid>

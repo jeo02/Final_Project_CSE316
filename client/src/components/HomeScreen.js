@@ -27,6 +27,7 @@ const HomeScreen = () => {
             store.setCurrentList(id);
         }
         setExpanded(isExpanded ? id : false);
+        setTabIndex(0);
     };
 
     
@@ -56,6 +57,8 @@ const HomeScreen = () => {
             </Box>
     }
 
+    
+
     let style = {
         display: "grid",
         gridTemplateColumns: "60% 40%",
@@ -76,7 +79,7 @@ const HomeScreen = () => {
                 <Box sx={{ borderBottom: 1, borderColor: 'divider'}}>
                     <Tabs value={tabIndex} onChange={handleTabChange}>
                         <Tab label="Player" sx={{color:'white'}}/>
-                        <Tab label="Comments" sx={{color:'white'}}/>
+                        <Tab label="Comments" sx={{color:'white'}} disabled={!store.currentList || (store.currentList && !store.currentList.published)}/>
                     </Tabs>
                 </Box>
                 {

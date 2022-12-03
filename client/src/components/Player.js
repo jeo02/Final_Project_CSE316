@@ -66,7 +66,7 @@ export default function Player(){
     return (
         <Box sx={styles}>
             {
-                store.currentList
+                store.currentList && store.currentList.songs.length > 0
                 ?
                 <YouTubePlayer 
                     currentSong={index} 
@@ -84,7 +84,7 @@ export default function Player(){
                         </Typography>
                     </Grid>
                     {
-                        store.currentList
+                        store.currentList && store.currentList.songs.length > 0
                         ?
                         <Grid container>
                             <Grid item xs={2}><b>Playlist:</b></Grid>

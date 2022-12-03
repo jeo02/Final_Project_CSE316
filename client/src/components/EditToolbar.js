@@ -23,7 +23,7 @@ function EditToolbar(props) {
     }
 
     function handlePublish(){
-        store.publish();
+        store.publish(store.currentList._id);
     }
 
     async function handleDeleteList(event) {
