@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { GlobalStoreContext } from '../store'
 import HomeIcon from '@mui/icons-material/Home';
 import { createTheme, ThemeProvider } from "@mui/material";
@@ -26,9 +26,35 @@ function HomeBanner(props) {
     const handleMenuClose = () => {
         setAnchorEl(null);
     };
-
+    
     function handleSearchUpdate(event) {
         setSearch(event.target.value);
+    }
+
+    function handleHome(){
+        store.listScreenHome("");
+    }
+
+    function handleAllLists(){
+        store.listScreenAll("");
+    }
+
+    function handleAllUsers(){
+        store.listScreenUsers("");
+    }
+
+    function handleKeyPress(event) {
+        if (event.code === "Enter") {
+            if(store.currentListScreen === "HOME"){
+                store.listScreenHome(search);
+            }
+            else if(store.currentListScreen === "ALL_LISTS"){
+                store.listScreenAll(search);
+            }
+            else{
+                store.listScreenUsers(search);
+            }
+        }
     }
 
     const myTheme = createTheme({
@@ -40,13 +66,20 @@ function HomeBanner(props) {
         }
     });
 
+    console.log("poop",store.currentListScreen)
+    let homeDisabled = store.currentListScreen === "HOME";
+    let allDisabled = store.currentListScreen === "ALL_LISTS";
+    let usersDisabled = store.currentListScreen === "ALL_USERS";
+
     return(
         <Grid container alignItems="center" sx={{color:"white"}}>
             <Grid item xs={3} sx={{display:"flex", justifyContent:"flex-start", gap:"10px"}}>
                 <IconButton 
                     id='home-button'
                     color = "inherit"
-                    //onClick={handleUndo}
+                    size="large"
+                    disabled={homeDisabled}
+                    onClick={handleHome}
                     >
                         <HomeIcon sx={{fontSize: "50px"}}/>
                 </IconButton>
@@ -54,7 +87,8 @@ function HomeBanner(props) {
                     id='all-lists-button'
                     color = "inherit"
                     size="large"
-                    //onClick={handleRedo}
+                    disabled={allDisabled}
+                    onClick={handleAllLists}
                     >
                         <GroupsIcon sx={{fontSize: "50px"}}/>
                 </IconButton>
@@ -62,7 +96,8 @@ function HomeBanner(props) {
                     id='account-button'
                     color = "inherit"
                     size="large"
-                    //onClick={handleRedo}
+                    disabled={usersDisabled}
+                    onClick={handleAllUsers}
                     >
                         <PersonIcon sx={{fontSize: "50px"}}/>
                 </IconButton>
@@ -72,6 +107,7 @@ function HomeBanner(props) {
                     <TextField
                         id = "home-search-bar"
                         onChange={handleSearchUpdate} 
+                        onKeyDown={handleKeyPress}
                         label="Search"
                         fullWidth>
                     </TextField>
