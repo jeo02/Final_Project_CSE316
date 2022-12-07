@@ -56,6 +56,11 @@ export default function AppBanner() {
             <MenuItem onClick={handleMenuClose}><Link to='/register/'>Create New Account</Link></MenuItem>
         </Menu>
     );
+    
+    let text = "logout";
+    if(auth.user && auth.user.userName === "guest"){
+        text = "Exit Guest View"
+    }
     const loggedInMenu = 
         <Menu
             anchorEl={anchorEl}
@@ -72,8 +77,10 @@ export default function AppBanner() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleLogout}>Logout</MenuItem>
-        </Menu>        
+            <MenuItem onClick={handleLogout}>{text}</MenuItem>
+        </Menu> 
+        
+    
 
 
     let menu = loggedOutMenu;

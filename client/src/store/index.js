@@ -363,15 +363,22 @@ function GlobalStoreContextProvider(props) {
 
     // THIS FUNCTION LOADS ALL THE ID, NAME PAIRS SO WE CAN LIST ALL THE LISTS
     store.loadIdNamePairs = function () {
-        if(store.currentListScreen === "HOME"){
-            store.listScreenHome("");
-        }
-        else if(store.currentListScreen === "ALL_LISTS"){
+        console.log("bruh", auth.user)
+        if(auth.user && auth.user.userName === "guest"){
             store.listScreenAll("");
         }
         else{
-            store.listScreenUsers("");
+            if(store.currentListScreen === "HOME"){
+                store.listScreenHome("");
+            }
+            else if(store.currentListScreen === "ALL_LISTS"){
+                store.listScreenAll("");
+            }
+            else{
+                store.listScreenUsers("");
+            }
         }
+        
     }
 
     // THE FOLLOWING 5 FUNCTIONS ARE FOR COORDINATING THE DELETION

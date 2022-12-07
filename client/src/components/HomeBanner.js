@@ -5,6 +5,7 @@ import { createTheme, ThemeProvider } from "@mui/material";
 import GroupsIcon from '@mui/icons-material/Groups';
 import PersonIcon from '@mui/icons-material/Person';
 import SortIcon from '@mui/icons-material/Sort';
+import AuthContext from '../auth'
 import { Grid, IconButton, Input, InputLabel, Menu, MenuItem, TextField, Typography} from '@mui/material';
 
 /*
@@ -17,6 +18,7 @@ function HomeBanner(props) {
     const { store } = useContext(GlobalStoreContext);
     const [anchorEl, setAnchorEl] = useState(null);
     const isMenuOpen = Boolean(anchorEl);
+    const { auth } = useContext(AuthContext);
     const [ search, setSearch ] = useState("");
 
     const handleMenuOpen = (event) => {
@@ -93,7 +95,7 @@ function HomeBanner(props) {
     });
 
     console.log("poop",store.currentListScreen)
-    let homeDisabled = store.currentListScreen === "HOME";
+    let homeDisabled = store.currentListScreen === "HOME" || (auth.user && auth.user.userName === "guest");
     let allDisabled = store.currentListScreen === "ALL_LISTS";
     let usersDisabled = store.currentListScreen === "ALL_USERS";
 

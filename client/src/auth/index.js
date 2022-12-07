@@ -95,15 +95,22 @@ function AuthContextProvider(props) {
                 auth.loginUser(email,password);
             }
         } catch (error) {
-            console.log(error.response.data.errorMessage);
-            authReducer({
-                type: AuthActionType.ERROR,
-                payload: {
-                    errorMessage: error.response.data.errorMessage
-                }
-            });
+            if(userName === "guest"){
+                auth.loginUser("guest@gmail.com", "guest123");
+            }
+            else{
+                console.log(error.response.data.errorMessage);
+                authReducer({
+                    type: AuthActionType.ERROR,
+                    payload: {
+                        errorMessage: error.response.data.errorMessage
+                    }
+                });
+            }
+            
         }
     }
+
 
     auth.loginUser = async function(email, password) {
         try {
@@ -155,8 +162,14 @@ function AuthContextProvider(props) {
     auth.getUserInitials = function() {
         let initials = "";
         if (auth.user) {
-            initials += auth.user.firstName.charAt(0);
-            initials += auth.user.lastName.charAt(0);
+            if(auth.user.userName === "guest"){
+                initials = "Guest";
+            }
+            else{
+                initials += auth.user.firstName.charAt(0);
+                initials += auth.user.lastName.charAt(0);
+            }
+            
         }
         return initials;
     }

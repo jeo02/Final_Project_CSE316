@@ -68,11 +68,13 @@ function ListCard(props) {
     }
 
     function handleLike(){
-        store.likeList(idNamePair._id);
+        if(auth.user && auth.user.userName !== "guest")
+            store.likeList(idNamePair._id);
     }
 
     function handleDislike(){
-        store.dislikeList(idNamePair._id);
+        if(auth.user && auth.user.userName !== "guest")
+            store.dislikeList(idNamePair._id);
     }
 
     //These variables are for determining wether the list is liked/disliked

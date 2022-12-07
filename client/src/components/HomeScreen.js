@@ -37,7 +37,7 @@ const HomeScreen = () => {
     };
 
     useEffect(() => {
-        store.listScreenHome("");
+        store.loadIdNamePairs();
     }, []);
 
     let listCard = "";

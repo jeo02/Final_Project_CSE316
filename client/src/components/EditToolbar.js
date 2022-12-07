@@ -106,6 +106,11 @@ function EditToolbar(props) {
                 </Grid>
         }
     }
+
+    if(auth.user && auth.user.userName === "guest"){
+        editToolbar = "";
+    }
+
     return (
         <div>
            {editToolbar} 

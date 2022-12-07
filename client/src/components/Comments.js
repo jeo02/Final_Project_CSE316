@@ -23,7 +23,7 @@ export default function Comments(){
 
     let style = {
         display:"grid", 
-        gridTemplateRows:"90% 10%", 
+        gridTemplateRows:"88% 12%", 
         height:"90%", 
         margin: "5px 10px 0 10px", 
         borderRadius: "15px",
@@ -60,14 +60,22 @@ export default function Comments(){
                     ""
                 }
             </List>
-            <Box sx={{gridRowStart:"2", margin: "0 10px 10px 10px"}}>
-                <TextField
-                    onChange={handleUpdate}
-                    value={comment}
-                    onKeyDown={handleKeyPress}
-                    label="Comment"
-                    fullWidth>
-                </TextField>
+            <Box sx={{gridRowStart:"2", display: "flex", alignItems: "center", padding:"0 10px 0 10px",backgroundColor: "#b9d2ee", borderRadius: "0 0 15px 15px"}}>
+                {
+                    auth.user && auth.user.userName !== "guest"
+                    ?
+                    <TextField
+                        onChange={handleUpdate}
+                        value={comment}
+                        onKeyDown={handleKeyPress}
+                        label="Comment"
+                        fullWidth
+                        sx={{backgroundColor:"white"}}>
+                    </TextField>
+                    :
+                    ""
+                }
+                
             </Box>
         </Box>
     );

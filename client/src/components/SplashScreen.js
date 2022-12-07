@@ -1,10 +1,25 @@
 import { Button, Grid, Link, Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { useContext, useState } from 'react'
+import AuthContext from '../auth'
 
 export default function SplashScreen() {
+    const { auth } = useContext(AuthContext);
+
     let buttonStyle={
         display:"flex",
         justifyContent:"space-evenly"
+    }
+
+    function handleGuest(){
+        auth.registerUser(
+            "Guest",
+            "Page",
+            "guest@gmail.com",
+            "guest",
+            "guest123",
+            "guest123"
+        );
     }
     return (
         <div id="splash-screen">
@@ -41,7 +56,7 @@ export default function SplashScreen() {
                             <Button href="/login/" variant="contained" sx={{fontSize:"18px", width:"250px"}}>
                                 Login
                             </Button>
-                            <Button variant="contained" sx={{fontSize:"18px", width:"250px", padding:"15px"}}>
+                            <Button onClick={handleGuest} variant="contained" sx={{fontSize:"18px", width:"250px", padding:"15px"}}>
                                 Continue as Guest
                             </Button> 
                         </Box>
