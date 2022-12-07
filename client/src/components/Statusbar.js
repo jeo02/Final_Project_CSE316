@@ -14,7 +14,7 @@ function Statusbar() {
     const { auth } = useContext(AuthContext);
 
     function handleCreateNewList() {
-        store.createNewList();
+        store.createNewList("Untitled");
     }
 
     let text = "Your Lists";

@@ -31,6 +31,10 @@ function EditToolbar(props) {
         store.markListForDeletion(id);
     }
 
+    function handleDuplicate(){
+        store.createNewList("Copy: " + store.currentList.name)
+    }
+
     let editToolbar = "";
     if(store && store.currentList){
         if(!published){
@@ -70,7 +74,7 @@ function EditToolbar(props) {
                         <Button 
                             //disabled={!store.canRedo()}
                             id='duplicate-button'
-                            //onClick={handleRedo}
+                            onClick={handleDuplicate}
                             variant="contained">
                                 Duplicate
                         </Button>
@@ -98,7 +102,7 @@ function EditToolbar(props) {
                         <Button 
                             //disabled={!store.canRedo()}
                             id='duplicate-button'
-                            //onClick={handleRedo}
+                            onClick={handleDuplicate}
                             variant="contained">
                                 Duplicate
                         </Button>
