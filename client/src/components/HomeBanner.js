@@ -70,6 +70,16 @@ function HomeBanner(props) {
         store.sortByLikes();
     }
 
+    function handleSortCreate(){
+        handleMenuClose();
+        store.sortByCreation();
+    }
+
+    function handleSortUpdated(){
+        handleMenuClose();
+        store.sortByUpdated();
+    }
+
     function handleKeyPress(event) {
         if (event.code === "Enter") {
             if(store.currentListScreen === "HOME"){
@@ -155,26 +165,51 @@ function HomeBanner(props) {
                 >
                     <SortIcon sx={{fontSize: "50px"}}/>
                 </IconButton>
-                <Menu
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    open={isMenuOpen}
-                    onClose={handleMenuClose}
-                >
-                    <MenuItem onClick={handleSortName}>Name (A - Z)</MenuItem>
-                    <MenuItem onClick={handleSortPublish}>Published Date (Newest)</MenuItem>
-                    <MenuItem onClick={handleSortListens}>Listens (High - Low)</MenuItem>
-                    <MenuItem onClick={handleSortLikes}>Likes (High - Low)</MenuItem>
-                    <MenuItem onClick={handleSortDislikes}>Dislikes (High - Low)</MenuItem>
-                </Menu>
+                
+                {
+                    store.currentListScreen === "HOME"
+                    ?
+                    <Menu
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        open={isMenuOpen}
+                        onClose={handleMenuClose}
+                    >
+                        <MenuItem onClick={handleSortName}>Name (A - Z)</MenuItem>
+                        <MenuItem onClick={handleSortUpdated}>By Last Edit Date (New - Old)</MenuItem>
+                        <MenuItem onClick={handleSortCreate}>By Creation Date (Old - New)</MenuItem>
+                    </Menu>
+                    :
+                    <Menu
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        open={isMenuOpen}
+                        onClose={handleMenuClose}
+                    >
+                        <MenuItem onClick={handleSortName}>Name (A - Z)</MenuItem>
+                        <MenuItem onClick={handleSortPublish}>Published Date (Newest)</MenuItem>
+                        <MenuItem onClick={handleSortListens}>Listens (High - Low)</MenuItem>
+                        <MenuItem onClick={handleSortLikes}>Likes (High - Low)</MenuItem>
+                        <MenuItem onClick={handleSortDislikes}>Dislikes (High - Low)</MenuItem>
+                    </Menu>
+                }
+                
             </Grid>
         </Grid>
     )

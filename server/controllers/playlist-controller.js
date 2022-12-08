@@ -143,7 +143,9 @@ getUserPlaylistPairs = async (req, res) => {
                             dislikes: list.dislikes,
                             comments: list.comments,
                             views: list.views,
-                            publishedOn: list.publishedOn
+                            publishedOn: list.publishedOn,
+                            createdOn: list.createdAt,
+                            updatedOn: list.updatedAt
                         };
                         pairs.push(pair);
                     }
@@ -184,7 +186,9 @@ getAllPlaylistPairs = async (req, res) => {
                     dislikes: list.dislikes,
                     comments: list.comments,
                     views: list.views,
-                    publishedOn: list.publishedOn
+                    publishedOn: list.publishedOn,
+                    createdOn: list.createdAt,
+                    updatedOn: list.updatedAt
                 };
                 pairs.push(pair);
             }
@@ -222,7 +226,9 @@ getAllUserPlaylistPairs = async (req, res) => {
                     dislikes: list.dislikes,
                     comments: list.comments,
                     views: list.views,
-                    publishedOn: list.publishedOn
+                    publishedOn: list.publishedOn,
+                    createdOn: list.createdAt,
+                    updatedOn: list.updatedAt
                 };
                 pairs.push(pair);
             }

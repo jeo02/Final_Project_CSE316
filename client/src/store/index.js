@@ -811,27 +811,16 @@ function GlobalStoreContextProvider(props) {
         let listData = [...store.idNamePairs];
 
         listData.sort((a, b) => {
-            if(!a.published && !b.published){
-                return 0;
-            }
-            else if(a.published && !b.published){
+            let aDate = new Date(a.publishedOn);
+            let bDate = new Date(b.publishedOn);
+            if(aDate > bDate){
                 return -1;
             }
-            else if(!a.published && b.published){
+            else if(aDate < bDate){
                 return 1;
             }
             else{
-                let aDate = new Date(a.publishedOn);
-                let bDate = new Date(b.publishedOn);
-                if(aDate > bDate){
-                    return -1;
-                }
-                else if(aDate < bDate){
-                    return 1;
-                }
-                else{
-                    return 0;
-                }
+                return 0;
             }
             
         })
@@ -848,25 +837,14 @@ function GlobalStoreContextProvider(props) {
         let listData = [...store.idNamePairs];
 
         listData.sort((a, b) => {
-            if(!a.published && !b.published){
-                return 0;
-            }
-            else if(a.published && !b.published){
+            if(a.views > b.views){
                 return -1;
             }
-            else if(!a.published && b.published){
+            else if(a.views < b.views){
                 return 1;
             }
             else{
-                if(a.views > b.views){
-                    return -1;
-                }
-                else if(a.views < b.views){
-                    return 1;
-                }
-                else{
-                    return 0;
-                }
+                return 0;
             }
         })
 
@@ -882,25 +860,14 @@ function GlobalStoreContextProvider(props) {
         let listData = [...store.idNamePairs];
 
         listData.sort((a, b) => {
-            if(!a.published && !b.published){
-                return 0;
-            }
-            else if(a.published && !b.published){
+            if(a.likes.length > b.likes.length){
                 return -1;
             }
-            else if(!a.published && b.published){
+            else if(a.likes.length < b.likes.length){
                 return 1;
             }
             else{
-                if(a.likes.length > b.likes.length){
-                    return -1;
-                }
-                else if(a.likes.length < b.likes.length){
-                    return 1;
-                }
-                else{
-                    return 0;
-                }
+                return 0;
             }
         })
 
@@ -914,28 +881,69 @@ function GlobalStoreContextProvider(props) {
 
     store.sortByDislikes = function(){
         let listData = [...store.idNamePairs];
-
+        console.log(listData)
         listData.sort((a, b) => {
-            if(!a.published && !b.published){
-                return 0;
-            }
-            else if(a.published && !b.published){
+            if(a.dislikes.length > b.dislikes.length){
                 return -1;
             }
-            else if(!a.published && b.published){
+            else if(a.dislikes.length < b.dislikes.length){
                 return 1;
             }
             else{
-                if(a.dislikes.length > b.dislikes.length){
-                    return -1;
-                }
-                else if(a.dislikes.length < b.dislikes.length){
-                    return 1;
-                }
-                else{
-                    return 0;
-                }
+                return 0;
             }
+        })
+
+        storeReducer({
+            type: GlobalStoreActionType.SORT_LISTS,
+            payload:{
+                idNamePairs: listData
+            }
+        })
+    }
+
+    store.sortByCreation = function(){
+        let listData = [...store.idNamePairs];
+
+        listData.sort((a, b) => {
+            let aDate = new Date(a.createdOn);
+            let bDate = new Date(b.createdOn);
+            if(aDate > bDate){
+                return 1;
+            }
+            else if(aDate < bDate){
+                return -1;
+            }
+            else{
+                return 0;
+            }
+            
+        })
+
+        storeReducer({
+            type: GlobalStoreActionType.SORT_LISTS,
+            payload:{
+                idNamePairs: listData
+            }
+        })
+    }
+
+    store.sortByUpdated = function(){
+        let listData = [...store.idNamePairs];
+
+        listData.sort((a, b) => {
+            let aDate = new Date(a.updatedOn);
+            let bDate = new Date(b.updatedOn);
+            if(aDate > bDate){
+                return -1;
+            }
+            else if(aDate < bDate){
+                return 1;
+            }
+            else{
+                return 0;
+            }
+            
         })
 
         storeReducer({
