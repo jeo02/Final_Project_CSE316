@@ -11,16 +11,15 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 export default function Player(){
     const { store } = useContext(GlobalStoreContext);
-    let [index, setIndex] = useState(0);
     let youtubePlayer = null;
 
     // THIS FUNCTION INCREMENTS THE PLAYLIST SONG TO THE NEXT ONE
     function incSong() {
-        setIndex((index+1) % store.currentList.songs.length);
+        store.updatePlayIndex((store.songPlayIndex+1) % store.currentList.songs.length);
     }
 
     function decSong(){
-        setIndex((index-1) % store.currentList.songs.length)
+        store.updatePlayIndex((store.songPlayIndex-1) % store.currentList.songs.length);
     }
 
     function pauseSong(){
@@ -38,6 +37,10 @@ export default function Player(){
     function updatePlayer(ref){
         youtubePlayer = ref;
         console.log(youtubePlayer);
+        if(store.songPlayIndex === 1){
+            store.updateListens();
+        }
+        
     }
 
     let playingInfoStyles = {
@@ -45,9 +48,6 @@ export default function Player(){
         justifyContent: "flex-start",
     }
 
-    if(!store.currentList && index !== 0){
-        setIndex(0);
-    }
     let styles = {
         backgroundColor: "white", 
         height: "90%", 
@@ -67,7 +67,6 @@ export default function Player(){
                 store.currentList && store.currentList.songs.length > 0
                 ?
                 <YouTubePlayer 
-                    currentSong={index} 
                     incSong={incSong}
                     updatePlayer={updatePlayer}/>
                 :
@@ -89,13 +88,13 @@ export default function Player(){
                             <Grid item xs={10} sx={playingInfoStyles}>{store.currentList.name}</Grid>
 
                             <Grid item xs={2}><b>Song #:</b></Grid>
-                            <Grid item xs={10} sx={playingInfoStyles}>{index+1}</Grid>
+                            <Grid item xs={10} sx={playingInfoStyles}>{store.songPlayIndex+1}</Grid>
 
                             <Grid item xs={2}><b>Title:</b></Grid>
-                            <Grid item xs={10} sx={playingInfoStyles}>{store.currentList.songs[index].title}</Grid>
+                            <Grid item xs={10} sx={playingInfoStyles}>{store.currentList.songs[store.songPlayIndex].title}</Grid>
 
                             <Grid item xs={2}><b>Artist:</b></Grid>
-                            <Grid item xs={10} sx={playingInfoStyles}>{store.currentList.songs[index].artist}</Grid>
+                            <Grid item xs={10} sx={playingInfoStyles}>{store.currentList.songs[store.songPlayIndex].artist}</Grid>
                             
                             <Grid item xs={12} sx={{marginBottom: "30px"}}></Grid>
 

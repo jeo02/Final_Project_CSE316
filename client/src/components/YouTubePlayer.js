@@ -5,8 +5,7 @@ import { useContext, useState, useRef } from 'react'
 
 export default function YouTubePlayer(props) {
     const { store } = useContext(GlobalStoreContext);
-    const { currentSong, incSong, updatePlayer } = props
-    const youtube = useRef();
+    const { incSong, updatePlayer } = props
     // THIS EXAMPLE DEMONSTRATES HOW TO DYNAMICALLY MAKE A
     // YOUTUBE PLAYER AND EMBED IT IN YOUR SITE. IT ALSO
     // DEMONSTRATES HOW TO IMPLEMENT A PLAYLIST THAT MOVES
@@ -25,14 +24,14 @@ export default function YouTubePlayer(props) {
         width: "100%",
         playerVars: {
             // https://developers.google.com/youtube/player_parameters
-            autoplay: 0,
+            autoplay: 1,
         },
     };
 
     // THIS FUNCTION LOADS THE CURRENT SONG INTO
     // THE PLAYER AND PLAYS IT
     function loadAndPlayCurrentSong(player) {
-        let song = playlist[currentSong];
+        let song = playlist[store.songPlayIndex];
         player.loadVideoById(song);
         player.playVideo();
         
@@ -81,8 +80,7 @@ export default function YouTubePlayer(props) {
     }
 
     return <YouTube
-        ref={youtube}
-        videoId={playlist[currentSong]}
+        videoId={playlist[store.songPlayIndex]}
         opts={playerOptions}
         onReady={onPlayerReady}
         onStateChange={onPlayerStateChange} />;

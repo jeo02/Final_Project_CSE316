@@ -69,12 +69,24 @@ function SongCard(props) {
                 </IconButton>
             </Box>
     }
-    let cardClass = "list-card unselected-list-card";
+    
+    let style = {
+        display: 'flex', 
+        p: 1,
+    }
+    if(index === store.songPlayIndex){
+        style = {
+            display: 'flex', 
+            p: 1,
+            backgroundColor: "white",
+            borderRadius: "15px"
+        }
+    }
     return (
         <ListItem 
             key={index}
             id={'song-' + index + '-card'}
-            sx={{display: 'flex', p: 1 }}
+            sx={style}
             style={{ width: '100%'}}
             onDragStart={handleDragStart}
             onDragOver={handleDragOver}

@@ -61,19 +61,18 @@ function ListCard(props) {
     }
 
     const handleChangeCallback = (event, id) => {
-        console.log("what you doing here?")
         if(event.detail === 1 && !editActive){
             changeCallback(id, !(expanded === id));
         }
     }
 
     function handleLike(){
-        if(auth.user && auth.user.userName !== "guest")
+        if(auth.user && auth.user.userName !== "guest" && store.currentList === null)
             store.likeList(idNamePair._id);
     }
 
     function handleDislike(){
-        if(auth.user && auth.user.userName !== "guest")
+        if(auth.user && auth.user.userName !== "guest" && store.currentList === null)
             store.dislikeList(idNamePair._id);
     }
 
